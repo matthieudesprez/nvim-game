@@ -1,0 +1,67 @@
+return {
+  {
+    category = "Find/Till",
+    title = "Find Character",
+    description = "Jump to the opening parenthesis",
+    teach = { "f" },
+    hint = "f( jumps forward to the next '(' character on the line",
+    par = 2,
+    buffer_lines = {
+      "function greet(name, greeting)",
+    },
+    cursor_start = { 1, 0 },
+    goal = { cursor = { 1, 14 } },
+  },
+  {
+    category = "Find/Till",
+    title = "Repeat Find",
+    description = "Reach the second comma in this argument list",
+    teach = { "f", ";" },
+    hint = "f, finds the first comma, then ; repeats the last f/t search forward",
+    par = 3,
+    buffer_lines = {
+      "calculate(price, quantity, taxRate, discount)",
+    },
+    cursor_start = { 1, 0 },
+    goal = { cursor = { 1, 25 } },
+  },
+  {
+    category = "Find/Till",
+    title = "Find Backward",
+    description = "Jump backward to the equals sign",
+    teach = { "F" },
+    hint = "F searches backward on the line for a character",
+    par = 2,
+    buffer_lines = {
+      "local config = { debug = true, verbose = false }",
+    },
+    cursor_start = { 1, 48 },
+    goal = { cursor = { 1, 30 } },
+  },
+  {
+    category = "Find/Till",
+    title = "Till Character",
+    description = "Place cursor just before the colon after 'com'",
+    teach = { "t" },
+    hint = "t stops one character BEFORE the match (vs f which lands ON the match)",
+    par = 2,
+    buffer_lines = {
+      "https://api.example.com:8080/v2",
+    },
+    cursor_start = { 1, 0 },
+    goal = { cursor = { 1, 22 } },
+  },
+  {
+    category = "Find/Till",
+    title = "Navigate Dots",
+    description = "Land on the third dot using f and ;",
+    teach = { "f", ";", "," },
+    hint = "f. finds first dot, ; repeats forward, , reverses the search direction",
+    par = 4,
+    buffer_lines = {
+      "app.config.database.connection.pool_size = 10",
+    },
+    cursor_start = { 1, 0 },
+    goal = { cursor = { 1, 19 } },
+  },
+}

@@ -1,0 +1,67 @@
+return {
+  {
+    category = "Word Motions",
+    title = "Jump Forward",
+    description = "Move to the beginning of 'world'",
+    teach = { "w" },
+    hint = "Press 'w' to jump to the start of the next word",
+    par = 1,
+    buffer_lines = {
+      "hello world",
+    },
+    cursor_start = { 1, 0 },
+    goal = { cursor = { 1, 6 } },
+  },
+  {
+    category = "Word Motions",
+    title = "Word Hopping",
+    description = "Jump to the word 'vim' using w",
+    teach = { "w" },
+    hint = "Press 'w' multiple times to hop across words",
+    par = 4,
+    buffer_lines = {
+      "I am learning vim today",
+    },
+    cursor_start = { 1, 0 },
+    goal = { cursor = { 1, 14 } },
+  },
+  {
+    category = "Word Motions",
+    title = "Jump Backward",
+    description = "Move back to the word 'the'",
+    teach = { "b" },
+    hint = "Press 'b' to jump to the start of the previous word",
+    par = 2,
+    buffer_lines = {
+      "over the lazy dog",
+    },
+    cursor_start = { 1, 13 },
+    goal = { cursor = { 1, 5 } },
+  },
+  {
+    category = "Word Motions",
+    title = "Word Endings",
+    description = "Move to the end of the word 'quick'",
+    teach = { "e" },
+    hint = "Press 'e' to move to the end of the current/next word",
+    par = 1,
+    buffer_lines = {
+      "the quick brown fox",
+    },
+    cursor_start = { 1, 4 },
+    goal = { cursor = { 1, 8 } },
+  },
+  {
+    category = "Word Motions",
+    title = "Word Precision",
+    description = "Navigate to the start of 'jumps' using counts",
+    teach = { "w", "b", "e" },
+    hint = "Use {count}w to jump multiple words: e.g., 3w jumps 3 words forward",
+    par = 2,
+    buffer_lines = {
+      "the quick brown fox jumps over the lazy dog",
+    },
+    cursor_start = { 1, 4 },
+    goal = { cursor = { 1, 20 } },
+  },
+}

@@ -1,0 +1,56 @@
+return {
+  {
+    category = "Line Motions",
+    title = "Line Start",
+    description = "Move to the very beginning of the line",
+    teach = { "0" },
+    hint = "Press '0' to jump to column 0 (first character of the line)",
+    par = 1,
+    buffer_lines = {
+      "    The cursor should be at the start",
+    },
+    cursor_start = { 1, 20 },
+    goal = { cursor = { 1, 0 } },
+  },
+  {
+    category = "Line Motions",
+    title = "Line End",
+    description = "Move to the last character of the line",
+    teach = { "$" },
+    hint = "Press '$' to jump to the end of the line",
+    par = 1,
+    buffer_lines = {
+      "Get to the end of this line!",
+    },
+    cursor_start = { 1, 0 },
+    goal = { cursor = { 1, 27 } },
+  },
+  {
+    category = "Line Motions",
+    title = "First Non-Blank",
+    description = "Move to the first non-space character",
+    teach = { "^" },
+    hint = "Press '^' to jump to the first non-blank character on the line",
+    par = 1,
+    buffer_lines = {
+      "        indented text here",
+    },
+    cursor_start = { 1, 20 },
+    goal = { cursor = { 1, 8 } },
+  },
+  {
+    category = "Line Motions",
+    title = "Line Mastery",
+    description = "Reach the end of line 2 using line motions + j",
+    teach = { "0", "$", "^" },
+    hint = "Combine $, j, 0, ^ with vertical motions to navigate across lines",
+    par = 2,
+    buffer_lines = {
+      "  first line of code",
+      "  second line with target",
+      "  third line of code",
+    },
+    cursor_start = { 1, 10 },
+    goal = { cursor = { 2, 24 } },
+  },
+}
