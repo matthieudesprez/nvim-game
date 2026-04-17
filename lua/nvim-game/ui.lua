@@ -167,8 +167,8 @@ function M.set_puzzle_content(puzzle)
     local target_row = puzzle.goal.cursor[1] - 1
     local target_col = puzzle.goal.cursor[2]
     local line = puzzle.buffer_lines[puzzle.goal.cursor[1]] or ""
-    local end_col = math.min(target_col + 1, #line)
-    if target_col < #line then
+    if target_col ~= nil and target_col < #line then
+      local end_col = math.min(target_col + 1, #line)
       vim.api.nvim_buf_set_extmark(M.game_buf, M.ns, target_row, target_col, {
         end_col = end_col,
         hl_group = "NvimGameTarget",
@@ -275,25 +275,41 @@ function M.render_info(puzzle, level_info, keystroke_count, opts)
   })
 end
 
-function M.show_success(message)
+function M.show_success(message, solution)
   if not M.info_buf or not vim.api.nvim_buf_is_valid(M.info_buf) then
     return
   end
   vim.api.nvim_set_option_value("modifiable", true, { buf = M.info_buf })
   local msg = " " .. (message or "Correct! Well done!")
-  vim.api.nvim_buf_set_lines(M.info_buf, 0, 2, false, {
-    msg,
-    " Press <Enter> for next puzzle  |  q to return to menu",
-  })
+  local hint_line = " Press <Enter> for next puzzle  |  q to return to menu"
+
+  local lines = { msg }
+  local solution_line = nil
+  if solution then
+    solution_line = " Optimal: " .. solution
+    table.insert(lines, solution_line)
+  end
+  table.insert(lines, hint_line)
+  while #lines < 7 do
+    table.insert(lines, "")
+  end
+
+  vim.api.nvim_buf_set_lines(M.info_buf, 0, -1, false, lines)
   vim.api.nvim_set_option_value("modifiable", false, { buf = M.info_buf })
 
   vim.api.nvim_buf_clear_namespace(M.info_buf, M.ns, 0, -1)
   vim.api.nvim_buf_set_extmark(M.info_buf, M.ns, 0, 0, {
     end_row = 0, end_col = #msg, hl_group = "NvimGameSuccess",
   })
-  local hint_line = " Press <Enter> for next puzzle  |  q to return to menu"
-  vim.api.nvim_buf_set_extmark(M.info_buf, M.ns, 1, 0, {
-    end_row = 1, end_col = #hint_line, hl_group = "NvimGameDim",
+  local hint_row = 1
+  if solution_line then
+    vim.api.nvim_buf_set_extmark(M.info_buf, M.ns, 1, 0, {
+      end_row = 1, end_col = #solution_line, hl_group = "NvimGameKeystroke",
+    })
+    hint_row = 2
+  end
+  vim.api.nvim_buf_set_extmark(M.info_buf, M.ns, hint_row, 0, {
+    end_row = hint_row, end_col = #hint_line, hl_group = "NvimGameDim",
   })
 end
 

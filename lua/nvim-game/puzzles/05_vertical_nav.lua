@@ -117,6 +117,6 @@ return {
       'app.listen(3000, () => console.log("Running"));',
     },
     cursor_start = { 11, 0 },
-    goal = { cursor = { 3, 0 } },
+    goal = { cursor = { 3 } },
   },
 }

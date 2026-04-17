@@ -68,7 +68,7 @@ return {
       "}",
     },
     cursor_start = { 1, 6 },
-    goal = { cursor = { 4, 26 } },
+    goal = { cursor = { 4, 23 } },
   },
   {
     category = "Search",
@@ -86,7 +86,7 @@ return {
       "}",
     },
     cursor_start = { 1, 24 },
-    goal = { cursor = { 4, 33 } },
+    goal = { cursor = { 4, 29 } },
   },
   {
     category = "Search",

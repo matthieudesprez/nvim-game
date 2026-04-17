@@ -245,7 +245,9 @@ function M.validate()
       return
     end
     local cursor = vim.api.nvim_win_get_cursor(ui.game_win)
-    if cursor[1] ~= puzzle.goal.cursor[1] or cursor[2] ~= puzzle.goal.cursor[2] then
+    if cursor[1] ~= puzzle.goal.cursor[1] then
+      goal_met = false
+    elseif puzzle.goal.cursor[2] ~= nil and cursor[2] ~= puzzle.goal.cursor[2] then
       goal_met = false
     end
   end
@@ -339,7 +341,11 @@ function M.on_success()
     end
   end
 
-  ui.show_success(msg)
+  local solution_str = nil
+  if puzzle.solution then
+    solution_str = string.format("%s  (%d keys)", puzzle.solution, #puzzle.solution)
+  end
+  ui.show_success(msg, solution_str)
 
   -- Save progress for category-based play
   if M.state.current_category then

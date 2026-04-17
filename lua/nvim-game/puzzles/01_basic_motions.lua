@@ -6,6 +6,7 @@ return {
     teach = { "l" },
     hint = "Press 'l' to move one character to the right",
     par = 4,
+    solution = "llll",
     buffer_lines = {
       "....X......",
     },
@@ -19,6 +20,7 @@ return {
     teach = { "h" },
     hint = "Press 'h' to move one character to the left",
     par = 3,
+    solution = "hhh",
     buffer_lines = {
       "..X........",
     },
@@ -32,6 +34,7 @@ return {
     teach = { "j" },
     hint = "Press 'j' to move one line down",
     par = 4,
+    solution = "jjjj",
     buffer_lines = {
       "Start here",
       "...........",
@@ -49,6 +52,7 @@ return {
     teach = { "k" },
     hint = "Press 'k' to move one line up",
     par = 3,
+    solution = "kkk",
     buffer_lines = {
       "Goal line!",
       "...........",
@@ -65,6 +69,7 @@ return {
     teach = { "h", "j", "k", "l" },
     hint = "Combine h/j/k/l: h=left, j=down, k=up, l=right",
     par = 7,
+    solution = "3j8l",
     buffer_lines = {
       "S . . . .",
       ". . . . .",
