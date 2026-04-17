@@ -8,6 +8,7 @@ M.game_buf = nil
 M.game_win = nil
 M.diff_buf = nil
 M.diff_win = nil
+M.game_tab = nil
 
 local highlights = {
   NvimGameTitle     = { fg = "#f9e2af", bold = true },
@@ -34,8 +35,36 @@ function M.setup_highlights()
   end
 end
 
+function M.ensure_tab()
+  if M.game_tab and vim.api.nvim_tabpage_is_valid(M.game_tab) then
+    if vim.api.nvim_get_current_tabpage() ~= M.game_tab then
+      vim.api.nvim_set_current_tabpage(M.game_tab)
+    end
+    return
+  end
+  vim.cmd("tabnew")
+  M.game_tab = vim.api.nvim_get_current_tabpage()
+  local buf = vim.api.nvim_get_current_buf()
+  vim.api.nvim_set_option_value("buftype", "nofile", { buf = buf })
+  vim.api.nvim_set_option_value("bufhidden", "wipe", { buf = buf })
+  vim.api.nvim_set_option_value("swapfile", false, { buf = buf })
+  local win = vim.api.nvim_get_current_win()
+  vim.api.nvim_set_option_value("number", false, { win = win })
+  vim.api.nvim_set_option_value("relativenumber", false, { win = win })
+  vim.api.nvim_set_option_value("signcolumn", "no", { win = win })
+end
+
+function M.close_tab()
+  if M.game_tab and vim.api.nvim_tabpage_is_valid(M.game_tab) then
+    pcall(vim.api.nvim_set_current_tabpage, M.game_tab)
+    pcall(vim.cmd, "tabclose")
+  end
+  M.game_tab = nil
+end
+
 function M.open(puzzle, level_info, render_opts)
   M.setup_highlights()
+  M.ensure_tab()
   M.close()
 
   local config = require("nvim-game").config
@@ -315,6 +344,7 @@ end
 
 function M.show_random_track_results(results)
   M.setup_highlights()
+  M.ensure_tab()
   M.close()
 
   local config = require("nvim-game").config
@@ -400,6 +430,7 @@ end
 
 function M.show_menu(categories, progress_data)
   M.setup_highlights()
+  M.ensure_tab()
   M.close()
 
   local config = require("nvim-game").config
@@ -542,10 +573,12 @@ function M.show_menu(categories, progress_data)
 
   vim.keymap.set("n", "q", function()
     M.close()
+    M.close_tab()
   end, { buffer = menu_buf, noremap = true, nowait = true })
 
   vim.keymap.set("n", "<Esc>", function()
     M.close()
+    M.close_tab()
   end, { buffer = menu_buf, noremap = true, nowait = true })
 
   M.info_buf = menu_buf

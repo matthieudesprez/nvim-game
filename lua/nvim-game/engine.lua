@@ -189,6 +189,7 @@ function M.setup_autocmds()
         vim.schedule(function()
           M.cleanup()
           ui.close()
+          ui.close_tab()
         end)
       end
     end,
@@ -461,6 +462,7 @@ function M.setup_game_keymaps()
   vim.keymap.set("n", "<Esc><Esc>", function()
     M.cleanup()
     ui.close()
+    ui.close_tab()
   end, { buffer = buf, noremap = true, desc = "Quit game" })
 end
 
