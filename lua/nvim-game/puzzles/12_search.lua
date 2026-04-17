@@ -108,6 +108,6 @@ return {
       "}",
     },
     cursor_start = { 10, 0 },
-    goal = { cursor = { 4, 16 } },
+    goal = { cursor = { 4, 23 } },
   },
 }
