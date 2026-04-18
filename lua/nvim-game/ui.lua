@@ -70,7 +70,7 @@ function M.open(puzzle, level_info, render_opts)
   local config = require("nvim-game").config
   local width = config.width
   local total_height = config.height
-  local info_height = 7
+  local info_height = 8
   local game_height = total_height - info_height - 1
 
   local editor_width = vim.o.columns
@@ -280,6 +280,7 @@ function M.render_info(puzzle, level_info, keystroke_count, opts)
     " [" .. bar .. "] " .. completed .. "/" .. total
         .. "  |  Keystrokes: " .. keystroke_count
         .. (puzzle.par and ("  |  Par: " .. puzzle.par) or ""),
+    " <Leader>r reset  |  <Leader>s skip  |  <Esc><Esc> quit",
   }
 
   vim.api.nvim_buf_set_lines(M.info_buf, 0, -1, false, lines)
@@ -302,6 +303,9 @@ function M.render_info(puzzle, level_info, keystroke_count, opts)
   vim.api.nvim_buf_set_extmark(M.info_buf, M.ns, 6, 0, {
     end_row = 6, end_col = #lines[7], hl_group = "NvimGameProgress",
   })
+  vim.api.nvim_buf_set_extmark(M.info_buf, M.ns, 7, 0, {
+    end_row = 7, end_col = #lines[8], hl_group = "NvimGameDim",
+  })
 end
 
 function M.show_success(message, solution)
@@ -319,7 +323,7 @@ function M.show_success(message, solution)
     table.insert(lines, solution_line)
   end
   table.insert(lines, hint_line)
-  while #lines < 7 do
+  while #lines < 8 do
     table.insert(lines, "")
   end
 
