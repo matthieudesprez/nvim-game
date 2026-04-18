@@ -34,7 +34,7 @@ return {
     teach = { "j" },
     hint = "Press 'j' to move one line down",
     par = 4,
-    solution = "4j",
+    solution = "G",
     buffer_lines = {
       "Start here",
       "...........",
@@ -52,7 +52,7 @@ return {
     teach = { "k" },
     hint = "Press 'k' to move one line up",
     par = 3,
-    solution = "3k",
+    solution = "gg",
     buffer_lines = {
       "Goal line!",
       "...........",
@@ -69,7 +69,7 @@ return {
     teach = { "h", "j", "k", "l" },
     hint = "Combine h/j/k/l: h=left, j=down, k=up, l=right",
     par = 7,
-    solution = "3j8l",
+    solution = "G$",
     buffer_lines = {
       "S . . . .",
       ". . . . .",
