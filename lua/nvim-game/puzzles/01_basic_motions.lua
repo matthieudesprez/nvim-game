@@ -6,7 +6,7 @@ return {
     teach = { "l" },
     hint = "Press 'l' to move one character to the right",
     par = 4,
-    solution = "llll",
+    solution = "4l",
     buffer_lines = {
       "....X......",
     },
@@ -20,7 +20,7 @@ return {
     teach = { "h" },
     hint = "Press 'h' to move one character to the left",
     par = 3,
-    solution = "hhh",
+    solution = "3h",
     buffer_lines = {
       "..X........",
     },
@@ -34,7 +34,7 @@ return {
     teach = { "j" },
     hint = "Press 'j' to move one line down",
     par = 4,
-    solution = "jjjj",
+    solution = "4j",
     buffer_lines = {
       "Start here",
       "...........",
@@ -52,7 +52,7 @@ return {
     teach = { "k" },
     hint = "Press 'k' to move one line up",
     par = 3,
-    solution = "kkk",
+    solution = "3k",
     buffer_lines = {
       "Goal line!",
       "...........",
